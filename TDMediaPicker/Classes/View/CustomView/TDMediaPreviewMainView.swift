@@ -151,7 +151,7 @@ class TDMediaPreviewMainView: UIView, UICollectionViewDelegate, UICollectionView
         self.updateTextViewFrame()
     }
     
-    fileprivate func purgeVideoPlayer(_ completion: @escaping (Void) -> Void){
+    fileprivate func purgeVideoPlayer(_ completion: @escaping () -> Void){
         videoPlayerView?.removeFromSuperview()
         videoPlayerView?.purgeVideoPlayer {
             completion()

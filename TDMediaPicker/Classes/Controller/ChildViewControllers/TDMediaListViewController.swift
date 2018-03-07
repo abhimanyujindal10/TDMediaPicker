@@ -183,6 +183,19 @@ class TDMediaListViewController: UIViewController, TDMediaListViewDelegate, TDMe
         let mediaView = self.view as! TDMediaListView
         mediaView.reload(cart: cartViewModel, updateType: cartViewUpdateType)
     }
+    
+    func mediaListServiceManager(_ manager: TDMediaListServiceManager, cartmaximumUpdate maxCount:Int){
+        
+        let alertController = UIAlertController(title: "", message: "Maximum \(maxCount) items please!", preferredStyle: .alert)
+        self.present(alertController, animated: true, completion: nil)
+        self.perform(#selector(hideAlert), with: alertController, afterDelay: 1)
+        
+    }
+    
+    func hideAlert(alertCntroller: UIAlertController){
+        alertCntroller.dismiss(animated: true, completion: nil)
+    }
+    
 }
 // MARK: - Configurations
 

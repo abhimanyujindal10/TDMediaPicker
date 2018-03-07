@@ -27,11 +27,11 @@ extension (TDMediaUtil){
     {
         switch accessType {
         case .Camera:
-            AVCaptureDevice.requestAccess(forMediaType: AVMediaTypeVideo, completionHandler: { (isGranted) in
+            AVCaptureDevice.requestAccess(for: AVMediaType.video, completionHandler: { (isGranted) in
                 completionBlock(isGranted)
             })
         case .Microphone:
-            AVCaptureDevice.requestAccess(forMediaType: AVMediaTypeAudio, completionHandler: { (isGranted) in
+            AVCaptureDevice.requestAccess(for: AVMediaType.audio, completionHandler: { (isGranted) in
                 completionBlock(isGranted)
             })
         case .Gallery:
@@ -50,7 +50,7 @@ extension (TDMediaUtil){
     
     //MARK:- Checking User Access
     private static func isMicAvailable()-> Bool{
-        if AVCaptureDevice.authorizationStatus(forMediaType: AVMediaTypeAudio) ==  AVAuthorizationStatus.authorized
+        if AVCaptureDevice.authorizationStatus(for: AVMediaType.audio) ==  AVAuthorizationStatus.authorized
         {
             return true
         }
@@ -60,7 +60,7 @@ extension (TDMediaUtil){
     }
     
     private static func isCameraAvailable()-> Bool{
-        if AVCaptureDevice.authorizationStatus(forMediaType: AVMediaTypeVideo) ==  AVAuthorizationStatus.authorized
+        if AVCaptureDevice.authorizationStatus(for: AVMediaType.video) ==  AVAuthorizationStatus.authorized
         {
             return true
         }

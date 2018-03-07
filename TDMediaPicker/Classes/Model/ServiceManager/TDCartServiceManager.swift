@@ -10,6 +10,8 @@ import Foundation
 
 protocol TDCartServiceManagerDelegate: class {
     func cartServiceManager(_ manager: TDCartServiceManager, cartDidUpdate cart: TDCart, updateType: TDCart.UpdateType)
+    func cartServiceManager(_ manager: TDCartServiceManager, cartmaximumUpdate maxCount:Int)
+
 }
 
 
@@ -76,6 +78,10 @@ class TDCartServiceManager{
             return
         }
         if cart.media.count >= maxSelection{
+            for case let delegate as TDCartServiceManagerDelegate in delegates.allObjects {
+                delegate.cartServiceManager(self, cartmaximumUpdate: maxSelection)
+            }
+            
             return
         }
         

@@ -26,7 +26,7 @@ extension (TDMediaUtil){
                                             toItem: view, attribute: type2,
                                             multiplier: 1, constant: constant)
         if let priority = priority {
-            constraint.priority = priority
+            constraint.priority = UILayoutPriority(rawValue: priority)
         }
         
         constraint.isActive = true

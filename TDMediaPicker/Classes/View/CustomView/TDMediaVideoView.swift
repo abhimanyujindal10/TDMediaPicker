@@ -51,7 +51,7 @@ class TDMediaVideoView: UIView {
         self.avPlayer?.pause()
     }
     
-    func purgeVideoPlayer(_ completion: @escaping (Void) -> Void){
+    func purgeVideoPlayer(_ completion: @escaping () -> Void){
         if self.avPlayerLayer != nil{
             self.purgeVideoLayer {
                 completion()
@@ -61,7 +61,7 @@ class TDMediaVideoView: UIView {
         completion()
     }
     
-    func setupVideoPlayer(_ asset: PHAsset, completion: @escaping (Void) -> Void){
+    func setupVideoPlayer(_ asset: PHAsset, completion: @escaping () -> Void){
         self.asset = asset
         self.setupPlayer {
             self.isHidden = true
@@ -71,7 +71,7 @@ class TDMediaVideoView: UIView {
     
     // MARK: - Private Method(s)
     
-    private func setupPlayer(_ completion: @escaping (Void) -> Void){
+    private func setupPlayer(_ completion: @escaping () -> Void){
         TDMediaUtil.fetchPlayerItem(self.asset!) { (playerItem) in
             
             if playerItem != nil{
@@ -80,14 +80,14 @@ class TDMediaVideoView: UIView {
                 NotificationCenter.default.addObserver(self, selector: #selector(self.playerItemDidPlayToEndTime), name: NSNotification.Name.AVPlayerItemDidPlayToEndTime, object: playerItem)
                 self.avPlayerLayer = AVPlayerLayer(player: self.avPlayer)
                 self.avPlayerLayer!.frame = self.bounds
-                self.avPlayerLayer?.videoGravity = AVLayerVideoGravityResizeAspect
+                self.avPlayerLayer?.videoGravity = AVLayerVideoGravity.resizeAspect
                 self.layer.addSublayer(self.avPlayerLayer!)
                 completion()
             }
         }
     }
     
-    private func purgeVideoLayer(_ completion: @escaping (Void) -> Void){
+    private func purgeVideoLayer(_ completion: @escaping () -> Void){
         self.avPlayerLayer?.removeFromSuperlayer()
         avPlayerLayer = nil
         stopVideo()

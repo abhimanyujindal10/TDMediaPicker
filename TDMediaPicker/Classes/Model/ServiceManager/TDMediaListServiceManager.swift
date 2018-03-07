@@ -11,6 +11,8 @@ import Photos
 
 protocol TDMediaListServiceManagerDelegate:class {
     func mediaListServiceManager(_ manager: TDMediaListServiceManager, didUpdateCart cart: TDCart, updateType: TDCart.UpdateType)
+    func mediaListServiceManager(_ manager: TDMediaListServiceManager, cartmaximumUpdate maxCount:Int)
+
 }
 
 class TDMediaListServiceManager: TDCartServiceManagerDelegate {
@@ -95,6 +97,9 @@ class TDMediaListServiceManager: TDCartServiceManagerDelegate {
     
     func cartServiceManager(_ manager: TDCartServiceManager, cartDidUpdate cart: TDCart, updateType: TDCart.UpdateType) {
         self.delegate?.mediaListServiceManager(self, didUpdateCart: cart, updateType: updateType)
+    }
+    func cartServiceManager(_ manager: TDCartServiceManager, cartmaximumUpdate maxCount:Int){
+        self.delegate?.mediaListServiceManager(self, cartmaximumUpdate: maxCount)
     }
     
 }

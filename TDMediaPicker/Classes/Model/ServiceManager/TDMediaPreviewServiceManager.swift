@@ -91,5 +91,7 @@ class TDMediaPreviewServiceManager: TDCartServiceManagerDelegate{
         print("this updateType of TDCart is not supported \(updateType)")
     }
     
+    func cartServiceManager(_ manager: TDCartServiceManager, cartmaximumUpdate maxCount:Int){
+    }
 }
 
